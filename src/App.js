@@ -6,6 +6,7 @@ import EventPage from "./pages/Event"
 import BookingPage from "./pages/Booking"
 import MainNavigation from "./components/Navigation/MainNavigation"
 import  'semantic-ui-css/semantic.min.css';
+import Login from "./pages/Login"
 
 
 function App() {
@@ -15,8 +16,9 @@ function App() {
     <Switch>
     <Route path="/" component={null} exact/>
     <Route path="/events" component={EventPage} />
-    <Route path="/auth" component={AuthPage} />
+    <Route path="/signup" component={AuthPage} />
     <Route path="/bookings" component={BookingPage} />
+    <Route path="/login" component={Login} />
     </Switch>
     </BrowserRouter>
     

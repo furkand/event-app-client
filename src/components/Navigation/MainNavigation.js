@@ -3,7 +3,9 @@ import {NavLink} from "react-router-dom"
 import { Menu,Segment} from "semantic-ui-react"
 
 const MainNavigation = (props) => {
-    const [activeItem, setActiveItem] = useState('home')
+  const defaultValue = window.location.href.split("/")[3]
+    const [activeItem, setActiveItem] = useState(defaultValue)
+    console.log(defaultValue);
     const handleItemClick = (e,{name}) =>{ setActiveItem(name)
 
     }
@@ -19,10 +21,17 @@ const MainNavigation = (props) => {
             onClick={handleItemClick}
           />
           </NavLink>
-        <NavLink to='/auth'>
+        <NavLink to='/signup'>
           <Menu.Item
-            name='auth'
-            active={activeItem === 'auth'}
+            name='signup'
+            active={activeItem === 'signup'}
+            onClick={handleItemClick}
+          />
+          </NavLink>
+          <NavLink to='/login'>
+          <Menu.Item
+            name='login'
+            active={activeItem === 'login'}
             onClick={handleItemClick}
           />
           </NavLink>

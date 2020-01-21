@@ -10,7 +10,6 @@ const  AuthPage = (props)=>{
 
 
 
-
     const submitHandler = (event) =>{
         event.preventDefault()
         const email = credentials.email[0].trim();
@@ -18,13 +17,15 @@ const  AuthPage = (props)=>{
         if(email.length===0 || password.length===0){
             return;
         }
+        
 
         const requestBody = {
             query: `
-                mutation{
-                    createUser(userInput: {email: "${email}",password: "${password}"}){
-                        _id
-                        email
+                query{
+                    login(email: "${email}",password: "${password}"){
+                        token
+                        userId
+                        tokenExpiration
                     }
                 }
             `
@@ -41,8 +42,7 @@ const  AuthPage = (props)=>{
                         email: "",
                         password: ""
                     })
-                    setErrors(res.errors)
-                    console.log(errors)
+                    console.log(res.graphQL)
                     throw new Error("upss something went wrong while fetching data")
                 } 
                 return res.json();
@@ -51,7 +51,6 @@ const  AuthPage = (props)=>{
         )
         .then(res=>{
                 console.log(res)
-                
             }
         )
         .catch(err=>{
