@@ -1,18 +1,18 @@
 import React, {useContext, useState} from "react"
 import {NavLink} from "react-router-dom"
 import { Menu,Segment} from "semantic-ui-react"
+import UserContext from "../../context/auth-context";
+
 
 const MainNavigation = (props) => {
   const defaultValue = window.location.href.split("/")[3]
     const [activeItem, setActiveItem] = useState(defaultValue)
     console.log(defaultValue);
-    const handleItemClick = (e,{name}) =>{ setActiveItem(name)
-
-    }
-
+    const handleItemClick = (e,{name}) =>{ setActiveItem(name)}
+    const user = useContext(UserContext)
     return (
+
         <Segment inverted>
-        
         <Menu inverted pointing secondary>
         <NavLink to='/'>
           <Menu.Item
@@ -21,13 +21,16 @@ const MainNavigation = (props) => {
             onClick={handleItemClick}
           />
           </NavLink>
-        <NavLink to='/signup'>
-          <Menu.Item
-            name='signup'
-            active={activeItem === 'signup'}
-            onClick={handleItemClick}
-          />
-          </NavLink>
+          {!(user.userId) && (
+            <NavLink to='/signup'>
+            <Menu.Item
+              name='signup'
+              active={activeItem === 'signup'}
+              onClick={handleItemClick}
+            />
+            </NavLink>
+          )}
+          {!(user.userId) && (
           <NavLink to='/login'>
           <Menu.Item
             name='login'
@@ -35,6 +38,16 @@ const MainNavigation = (props) => {
             onClick={handleItemClick}
           />
           </NavLink>
+          )}
+          {(user.userId) && (
+          <NavLink to='/logout'>
+          <Menu.Item
+            name='logout'
+            active={activeItem === 'logout'}
+            onClick={user.logout}
+          />
+          </NavLink>
+          )}
           <NavLink to='events'>
           <Menu.Item
             name='events'
@@ -42,6 +55,7 @@ const MainNavigation = (props) => {
             onClick={handleItemClick}
           />
           </NavLink>
+          {(user.userId) && (
           <NavLink to='bookings'>
           <Menu.Item
             name='bookings'
@@ -49,8 +63,10 @@ const MainNavigation = (props) => {
             onClick={handleItemClick}
           />
           </NavLink>
+          )}
         </Menu>
       </Segment>
+
     )
 }
 

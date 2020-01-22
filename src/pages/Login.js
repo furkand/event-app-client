@@ -1,19 +1,21 @@
 import React, {useContext, useState,useRef} from "react"
 import {Button, Form, Input, Message} from "semantic-ui-react"
+import UserContext from "../context/auth-context"
 
-const  AuthPage = (props)=>{
+const  Login = (props)=>{
     const [errors, setErrors] = useState({})
     const [credentials, setCredentials] = useState({
         email: "",
         password: ""
     })
 
-
-
+    const userContext = useContext(UserContext)
+    console.log(userContext.token)
     const submitHandler = (event) =>{
         event.preventDefault()
-        const email = credentials.email[0].trim();
-        const password = credentials.password[0].trim();
+        console.log(credentials)
+        const email = credentials.email.trim();
+        const password = credentials.password.trim();
         if(email.length===0 || password.length===0){
             return;
         }
@@ -42,7 +44,6 @@ const  AuthPage = (props)=>{
                         email: "",
                         password: ""
                     })
-                    console.log(res.graphQL)
                     throw new Error("upss something went wrong while fetching data")
                 } 
                 return res.json();
@@ -50,7 +51,14 @@ const  AuthPage = (props)=>{
             }
         )
         .then(res=>{
-                console.log(res)
+            console.log("login response: " + res.data)
+              if(res.data.login.token){
+                  userContext.login(
+                      res.data.login.token, 
+                      res.data.login.userId,
+                      res.data.login.tokenExpirition
+                      )
+              }
             }
         )
         .catch(err=>{
@@ -59,9 +67,14 @@ const  AuthPage = (props)=>{
         })
     }
     const onChange = (event) =>{
-        setCredentials({
-            ...credentials,[event.target.name] : [event.target.value]
-        })
+        const preCredentials = {
+            ...credentials
+        }
+        const property = event.target.name
+        preCredentials[property] = event.target.value
+        setCredentials(
+            preCredentials
+        )
         console.log( "target name : " + [event.target.name] + " target value:  " + [event.target.value])
 
     }
@@ -101,4 +114,4 @@ const  AuthPage = (props)=>{
     )
 }
 
-export default AuthPage;
+export default Login;

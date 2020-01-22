@@ -1,5 +1,6 @@
 import React, {useContext, useState,useRef} from "react"
 import {Button, Form, Input, Message} from "semantic-ui-react"
+import AuthContext from "../context/auth-context"
 
 const  AuthPage = (props)=>{
     const [errors, setErrors] = useState({})
@@ -8,7 +9,7 @@ const  AuthPage = (props)=>{
         password: ""
     })
 
-
+    
 
 
     const submitHandler = (event) =>{
@@ -41,8 +42,6 @@ const  AuthPage = (props)=>{
                         email: "",
                         password: ""
                     })
-                    setErrors(res.errors)
-                    console.log(errors)
                     throw new Error("upss something went wrong while fetching data")
                 } 
                 return res.json();
@@ -50,7 +49,7 @@ const  AuthPage = (props)=>{
             }
         )
         .then(res=>{
-                console.log(res)
+           console.log(res.data)
                 
             }
         )
