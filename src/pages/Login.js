@@ -98,7 +98,7 @@ const  Signup = (props)=>{
     return (
         
         <div className="authentication-page" style={{width:30 + "%", margin: "auto", marginTop:150 + "px"}} >
-            <Form className={loading && "loading" }onSubmit={submitHandler}>
+            <Form className={loading && "loading" } onSubmit={submitHandler}>
                 {!emailValid}
                 <Form.Input
                     onChange={onChange}
