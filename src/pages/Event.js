@@ -1,5 +1,5 @@
 import React, {useContext, useState,useEffect} from "react"
-import SingleEvent from "./SingleEvent"
+import SingleEvent from "../components/Event/SingleEvent"
 
 
 function EventsPage(props){
@@ -42,7 +42,7 @@ const fetchData = async ()=>{
   },[])
 
     return (
-        <div style={{width:90+"%",margin:"auto"}}>
+        <div style={{width:90+"%",margin:"auto",marginTop:150}}>
                 {events.map(event=>
                     (
                         <SingleEvent event={event}/>

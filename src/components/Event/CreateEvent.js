@@ -1,6 +1,6 @@
 import React, {useContext, useState} from "react"
 
-function CreateEvent(props){
+function SingleEvent(props){
     return (
         <div style={{width:40+"%",margin:"auto",marginTop:100}}>
             <h1>Create Event</h1>
@@ -23,4 +23,4 @@ function CreateEvent(props){
     )
 }
 
-export default CreateEvent;
+export default SingleEvent;

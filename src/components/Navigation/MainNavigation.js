@@ -1,77 +1,48 @@
-import React, {useContext, useState} from "react"
-import {NavLink} from "react-router-dom"
+import React, {useContext, useState,useEffect} from "react"
+import {Link,NavLink} from "react-router-dom"
 import { Menu,Segment} from "semantic-ui-react"
 import UserContext from "../../context/auth-context";
+import "./MainNavigation.css"
 
 
 const MainNavigation = (props) => {
-    const takeHref = () =>{
-      return window.location.href.split("/")[3]
-    }
-    const defaultValue = takeHref()
-    const [activeItem, setActiveItem] = useState(defaultValue)
-    console.log(defaultValue);
-    console.log("main navigation is worked")
-    const handleItemClick = (e,{name}) =>{ setActiveItem(name)}
+
     const user = useContext(UserContext)
-    return (
 
-        <Segment inverted>
-        <Menu inverted pointing secondary>
-        <NavLink to='/'>
-          <Menu.Item
-            name='home'
-            active={activeItem === 'home'}
-            onClick={handleItemClick}
-          />
-        </NavLink>
-          {!(user.userId) && (
-            <NavLink to='/signup'>
-            <Menu.Item
-              name='signup'
-              active={activeItem === 'signup'}
-              onClick={handleItemClick}
-            />
-            </NavLink>
-          )}
-          {!(user.userId) && (
-          <NavLink to='/login'>
-          <Menu.Item
-            name='login'
-            active={activeItem === 'login'}
-            onClick={handleItemClick}
-          />
-          </NavLink>
-          )}
-          {(user.userId) && (
-          <NavLink to='/logout'>
-          <Menu.Item
-            name='logout'
-            active={activeItem === 'logout'}
-            onClick={user.logout}
-          />
-          </NavLink>
-          )}
-          <NavLink to='events'>
-          <Menu.Item
-            name='events'
-            active={activeItem === 'events'}
-            onClick={handleItemClick}
-          />
-          </NavLink>
-          {(user.userId) && (
-          <NavLink to='bookings'>
-          <Menu.Item
-            name='bookings'
-            active={activeItem === 'bookings'}
-            onClick={handleItemClick}
-          />
-          </NavLink>
-          )}
-        </Menu>
-      </Segment>
+    return ( <header className="main-navigation">
+    <div className="main-navigation__logo">
+      <h1>Join&Create Events</h1>
+    </div>
+    <nav className="main-navigation__items">
+      <ul>
+        {!user.token && (
+          <li>
+            <NavLink to="/login">Login</NavLink>
+          </li>
+        )}
+         {!user.token && (
+          <li>
+            <NavLink to="/signup">Signup</NavLink>
+          </li>
+        )}
+        <li>
+          <NavLink to="/events">Events</NavLink>
+        </li>
+        {user.token && (
+          <React.Fragment>
+            <li>
+              <NavLink to="/bookings">Bookings</NavLink>
+            </li>
+            <li>
+              <button onClick={user.logout}>Logout</button>
+            </li>
+          </React.Fragment>
+        )}
+      </ul>
+    </nav>
+  </header>
+);
 
-    )
 }
 
 export default MainNavigation;

@@ -1,7 +1,7 @@
-import React, {useContext, useState,useRef} from "react"
+import React, {useContext, useState} from "react"
 import {Button, Form, Input, Message} from "semantic-ui-react"
 import UserContext from "../context/auth-context"
-import emailValidation from "./emailValidation"
+import {emailValidation} from "../handlers/handlers"
 
 const  Signup = (props)=>{
     const [errors, setErrors] = useState([])
@@ -97,7 +97,7 @@ const  Signup = (props)=>{
     
     return (
         
-        <div className="authentication-page" style={{width:30 + "%", margin: "auto", marginTop:50 + "px"}}>
+        <div className="authentication-page" style={{width:30 + "%", margin: "auto", marginTop:150 + "px"}}>
             <Form className={loading && "loading" }onSubmit={submitHandler}>
                 {!emailValid}
                 <Form.Input
