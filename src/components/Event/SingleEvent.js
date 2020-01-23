@@ -13,13 +13,13 @@ function SingleEvent({event:{title,date,description,price}}){
                              <h4 className="ui olive header">{description}</h4>
                         </div>
                     </div>
-                     <div class="extra content">
-                     <div class="center aligned author">
+                     <div className="extra content">
+                     <div className="center aligned author">
                          <h4 className="ui green header">{price} $ </h4>
                      </div>
                      </div>
-                     <div class="extra content">
-                     <div class="center aligned author">
+                     <div className="extra content">
+                     <div className="center aligned author">
                          <h4 className="ui green header">Date: {moment(date).fromNow()}</h4>
                      </div>
                      </div>

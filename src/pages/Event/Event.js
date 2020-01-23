@@ -1,9 +1,13 @@
 import React, {useContext, useState,useEffect} from "react"
-import SingleEvent from "../components/Event/SingleEvent"
+import SingleEvent from "../../components/Event/SingleEvent"
+import {Link} from "react-router-dom"
+import AuthContext from "../../context/auth-context"
+import  "./event.css"
 
 
 function EventsPage(props){
 const [events,setEvents]= useState([])
+const user = useContext(AuthContext);
 const fetchData = async ()=>{
     const requestBody = {
         query: `
@@ -40,15 +44,21 @@ const fetchData = async ()=>{
   useEffect(()=>{
     fetchData()
   },[])
-
+    
     return (
-        <div style={{width:90+"%",margin:"auto",marginTop:150}}>
+        <React.Fragment>
+            
+            <div style={{width:90+"%",margin:"auto",marginTop:150}}>
+              {user.token && (<div className="create-button-container">
+                        <Link className="createEvent" to="/create-event">Create Event</Link>
+                            </div>)}
                 {events.map(event=>
                     (
-                        <SingleEvent event={event}/>
+                        <SingleEvent key={event._id} event={event}/>
                     )
                 )}
             </div>
+        </React.Fragment>
     )
 }
 

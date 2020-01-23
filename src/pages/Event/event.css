@@ -1,0 +1,24 @@
+.createEvent {
+    background: #21ba45;
+    color: white;
+    font-weight: bold;
+    border: 1px solid #21ba45;
+    margin-left: 8px;
+    padding: 7px;
+    font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+    box-sizing: border-box;
+}
+.create-button-container{
+    margin-bottom:30px;
+}
+
+.createEvent:hover {
+    background: white;
+    color: #21ba45;
+    border: 1px solid #21ba45!important;
+    font-weight: bold;
+    border: none;
+    margin-left: 8px;
+    padding: 7px;
+    font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+}

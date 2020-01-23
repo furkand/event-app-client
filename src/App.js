@@ -2,13 +2,14 @@ import React ,{useReducer,useState,useContext}from 'react';
 import './App.css';
 import {BrowserRouter, Route, Redirect, Switch} from "react-router-dom"
 import AuthPage from "./pages/Auth"
-import EventPage from "./pages/Event"
+import EventPage from "./pages/Event/Event"
 import BookingPage from "./pages/Booking"
 import MainNavigation from "./components/Navigation/MainNavigation"
 import  'semantic-ui-css/semantic.min.css';
 import Login from "./pages/Login"
 import UserContext from './context/auth-context'
 import Home from "./pages/Home"
+import CreateEvent from "./pages/Event/CreateEvent"
 
 
 
@@ -47,12 +48,14 @@ function App(props) {
         <Switch>
           
           {userCredentials.token && (<Redirect from="/login" to="/events" exact/>)}
+          {!userCredentials.token && (<Redirect from="/create-event" to="/events" exact/>)}
           {userCredentials.token && (<Redirect from="/signup" to="/events" exact/>)}
           {!userCredentials.token && (<Redirect from="/bookings" to="/login" exact/>)}
           {!userCredentials.token && (<Redirect from="/logout" to="/login" exact/>)}
           <Route path="/" component={Home} exact/>
           <Route path="/events" component={EventPage} />
           {!userCredentials.token && (<Route path="/signup" component={AuthPage} />)}
+          {userCredentials.token && (<Route path="/create-event" component={CreateEvent} />)}
           {userCredentials.token &&(<Route path="/bookings" component={BookingPage} />)}
           {!userCredentials.token &&(<Route path="/login" component={Login} />)}
         </Switch>
