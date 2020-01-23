@@ -1,71 +1,87 @@
 import React, {useContext, useState,useRef} from "react"
 import {Button, Form, Input, Message} from "semantic-ui-react"
 import UserContext from "../context/auth-context"
+import emailValidation from "./emailValidation"
 
-const  Login = (props)=>{
-    const [errors, setErrors] = useState({})
+const  Signup = (props)=>{
+    const [errors, setErrors] = useState([])
+    console.log(errors)
+    const [loading, setLoading] = useState(false)
     const [credentials, setCredentials] = useState({
         email: "",
         password: ""
     })
+    const clearCredentials = () =>{
+        setCredentials({
+            email: "",
+            password: ""
+        })
+    }
 
     const userContext = useContext(UserContext)
-    console.log(userContext.token)
-    const submitHandler = (event) =>{
+    const submitHandler = async (event) =>{
         event.preventDefault()
-        console.log(credentials)
+        setLoading(true)
         const email = credentials.email.trim();
         const password = credentials.password.trim();
         if(email.length===0 || password.length===0){
+            const error = {
+                error : "Inputs must not be blank!"
+            }
+            clearCredentials()
+            setLoading(false)
+            setErrors([error])
+            
             return;
         }
         
 
         const requestBody = {
             query: `
-                query{
-                    login(email: "${email}",password: "${password}"){
-                        token
-                        userId
-                        tokenExpiration
-                    }
+            query{
+                login(email: "${email}",password: "${password}"){
+                    token
+                    userId
+                    tokenExpiration
                 }
-            `
+            }
+        `
         }
-        fetch("https://furkan-event-app.herokuapp.com/graphql", {
-            method: "POST",
-            body: JSON.stringify(requestBody),
-            headers:{
-                "Content-Type" : "application/json"
+        try{
+            const data = await fetch("https://furkan-event-app.herokuapp.com/graphql", {
+                method: "POST",
+                body: JSON.stringify(requestBody),
+                headers:{
+                    "Content-Type" : "application/json"
+                }
+            })
+            const prettyData = await data.json()
+            if(data.status !==200 && data.status !==201){
+                clearCredentials()
+                const errorArray = prettyData.errors.map(error=>{
+                    return {error: error.message}
+                })
+                setLoading(false)
+                setErrors([...errorArray])
+                
+                throw new Error("Something went wrong!")
             }
-        }).then(res=>{
-                if(res.status !==200 && res.status !==201){
-                    setCredentials({
-                        email: "",
-                        password: ""
-                    })
-                    throw new Error("upss something went wrong while fetching data")
-                } 
-                return res.json();
-
-            }
-        )
-        .then(res=>{
-            console.log("login response: " + res.data)
-              if(res.data.login.token){
-                  userContext.login(
-                      res.data.login.token, 
-                      res.data.login.userId,
-                      res.data.login.tokenExpirition
-                      )
-              }
-            }
-        )
-        .catch(err=>{
-            console.log(err);
+            if(prettyData.data.login.token){
+                    console.log(prettyData.data.createUser)
+                              userContext.login(
+                                prettyData.data.login.token, 
+                                prettyData.data.login.userId
+                                  )
+                                setLoading(false)
+                                console.log("user token after login: " + prettyData.data.login.token)
+                          }
             
-        })
-    }
+        }
+        catch(err){
+            console.log(err)
+            setLoading(false)
+        }
+        }
     const onChange = (event) =>{
         const preCredentials = {
             ...credentials
@@ -75,19 +91,22 @@ const  Login = (props)=>{
         setCredentials(
             preCredentials
         )
-        console.log( "target name : " + [event.target.name] + " target value:  " + [event.target.value])
 
     }
+    const emailValid = emailValidation(credentials.email)
     
     return (
+        
         <div className="authentication-page" style={{width:30 + "%", margin: "auto", marginTop:50 + "px"}}>
-            <Form onSubmit={submitHandler}>
-                <Form.Field
+            <Form className={loading && "loading" }onSubmit={submitHandler}>
+                {!emailValid}
+                <Form.Input
                     onChange={onChange}
                     id='form-input-control-error-email'
                     control={Input}
                     label='Email'
                     name="email"
+                    type="email"
                     value={credentials.email}
                     placeholder='joe@schmoe.com'
 
@@ -95,7 +114,7 @@ const  Login = (props)=>{
 
                    
                  />
-                 <Form.Field
+                 <Form.Input
                     onChange={onChange}
                     id='form-input-control-error-password'
                     control={Input}
@@ -107,11 +126,20 @@ const  Login = (props)=>{
 
                    
                  />
-                  
+              
                 <Button type='submit'>Submit</Button>
             </Form>
+            {errors.length > 0 && (
+                        <div className='ui error message'>
+                        <ul className='list'>
+                            {errors.map(value=>(
+                            <li key={Math.random()}>{value.error}</li>
+                            ))}
+                        </ul>
+                    </div>
+                   )}
         </div>
     )
 }
 
-export default Login;
+export default Signup;

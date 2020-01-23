@@ -5,9 +5,13 @@ import UserContext from "../../context/auth-context";
 
 
 const MainNavigation = (props) => {
-  const defaultValue = window.location.href.split("/")[3]
+    const takeHref = () =>{
+      return window.location.href.split("/")[3]
+    }
+    const defaultValue = takeHref()
     const [activeItem, setActiveItem] = useState(defaultValue)
     console.log(defaultValue);
+    console.log("main navigation is worked")
     const handleItemClick = (e,{name}) =>{ setActiveItem(name)}
     const user = useContext(UserContext)
     return (
@@ -20,7 +24,7 @@ const MainNavigation = (props) => {
             active={activeItem === 'home'}
             onClick={handleItemClick}
           />
-          </NavLink>
+        </NavLink>
           {!(user.userId) && (
             <NavLink to='/signup'>
             <Menu.Item

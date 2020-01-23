@@ -32,7 +32,6 @@ function App(props) {
       userId: null
     })
   }
-  console.log("App.js userContext:  " + userContext.token)
   return (
     <BrowserRouter >
       <React.Fragment>
@@ -49,7 +48,7 @@ function App(props) {
           {userCredentials.token && (<Redirect from="/login" to="/events" exact/>)}
           {userCredentials.token && (<Redirect from="/signup" to="/events" exact/>)}
           {!userCredentials.token && (<Redirect from="/bookings" to="/login" exact/>)}
-          {!userCredentials.token && (<Redirect from="/logout" to="/events" exact/>)}
+          {!userCredentials.token && (<Redirect from="/logout" to="/login" exact/>)}
           <Route path="/" component={null} exact/>
           <Route path="/events" component={EventPage} />
           {!userCredentials.token && (<Route path="/signup" component={AuthPage} />)}
