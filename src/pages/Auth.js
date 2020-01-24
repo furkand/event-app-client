@@ -1,6 +1,6 @@
 import React, {useContext, useState} from "react"
 import {Button, Form, Input, Message} from "semantic-ui-react"
-import UserContext from "../context/auth-context"
+import {AuthContext} from "../context/auth-context"
 import {emailValidation} from "../handlers/handlers"
 
 const  Signup = (props)=>{
@@ -18,7 +18,7 @@ const  Signup = (props)=>{
         })
     }
 
-    const userContext = useContext(UserContext)
+    const userContext = useContext(AuthContext)
     const submitHandler = async (event) =>{
         event.preventDefault()
         setLoading(true)

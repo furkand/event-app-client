@@ -1,0 +1,82 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, ubuntu, roboto, noto,
+    segoe ui, arial, sans-serif;
+  background: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
+  background: #f0f0f0;
+}
+
+#root {
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+.home-page-container{
+    background-color: black;
+    width:100%;
+    height:100%
+}
+#root > div {
+  width: 400px;
+}
+.home-page{
+    margin: auto;
+    display: table;
+    padding-top :10%;
+}
+.home-page-button, .home-page-button:focus,.home-page-button:hover{
+    position: relative;
+    bottom: 200px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 30px;
+    padding-left: 30px;
+    border: 1px solid #d9e778;
+    background: #d9e778;
+    font-weight: bold;
+    font-size: 18px;
+    color: black;
+    margin: auto;
+    display: table;
+
+}
+
+
+
+.transitions-item {
+  overflow: hidden;
+  width: 100%;
+  color: white;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 5em;
+  font-weight: 800;
+  text-transform: uppercase;
+  will-change: transform, opacity, height;
+  white-space: nowrap;
+  cursor: pointer;
+  line-height: 80px;
+}

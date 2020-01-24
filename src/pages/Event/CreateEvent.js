@@ -1,28 +1,42 @@
 import React, {useContext, useState, useRef} from "react"
-import AuthContext from "../../context/auth-context"
+import {AuthContext} from "../../context/auth-context"
 import SingleEvent from "../../components/Event/SingleEvent"
 
 function CreateEvent(props){
     const [loading, setLoading] = useState(false)
     const [errors, setErrors] = useState([])
     const [event,setEvent] = useState()
-    const user = useContext(AuthContext)
-    const title = useRef()
-    const date = useRef()
-    const description = useRef()
-    const price = useRef()
+    let {user} = useContext(AuthContext)
+    let title = useRef()
+    let date = useRef()
+    let description = useRef()
+    let price = useRef()
     const onSubmit = async (event)=>{
         event.preventDefault()
-        setLoading(true)    
+        setLoading(true)
+        title = title.current.value
+        date = date.current.value
+        description = description.current.value
+        price = price.current.value
+        if(
+            title.trim().length === 0 ||
+            price <= 0 ||
+            date.trim().length === 0 ||
+            description.trim().length === 0
+            ){const error = {error : "Inputs must not be blank!"}
+            setLoading(false)
+            setErrors([error])
+            return;
+        }    
         const requestBody = {
             query:`
                 mutation{
                     createEvent(
                         eventInput:{
-                            title: "${title.current.value}"
-                            description: "${description.current.value}"
-                            price: ${price.current.value}
-                            date:"${date.current.value}"
+                            title: "${title}"
+                            description: "${description}"
+                            price: ${price}
+                            date:"${date}"
                         }
                     ){
                         title
@@ -39,7 +53,7 @@ function CreateEvent(props){
                 body: JSON.stringify(requestBody),
                 headers:{
                     'Content-Type' : 'application/json',
-                    'Authorization': 'Bearer ' + user.token
+                    'Authorization': 'Bearer ' + localStorage.getItem('jwtToken')
                 }
             })
             const prettyData = await data.json()
@@ -88,6 +102,15 @@ function CreateEvent(props){
                 </div>
                 <button className="ui button"  type="submit">Submit</button>
             </form>
+            {errors.length > 0 && (
+                        <div className='ui error message'>
+                        <ul className='list'>
+                            {errors.map(value=>(
+                            <li key={Math.random()}>{value.error}</li>
+                            ))}
+                        </ul>
+                    </div>
+                   )}
         </div>
     )
     return (

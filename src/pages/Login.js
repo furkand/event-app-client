@@ -1,12 +1,12 @@
 import React, {useContext, useState,useRef} from "react"
 import {Button, Form, Input, Message} from "semantic-ui-react"
-import UserContext from "../context/auth-context"
+import {AuthContext} from "../context/auth-context"
 import {emailValidation} from "../handlers/handlers"
 
 const  Signup = (props)=>{
     const [errors, setErrors] = useState([])
-    console.log(errors)
     const [loading, setLoading] = useState(false)
+    const userContext = useContext(AuthContext)
     const [credentials, setCredentials] = useState({
         email: "",
         password: ""
@@ -18,7 +18,6 @@ const  Signup = (props)=>{
         })
     }
 
-    const userContext = useContext(UserContext)
     const submitHandler = async (event) =>{
         event.preventDefault()
         setLoading(true)
@@ -67,13 +66,13 @@ const  Signup = (props)=>{
                 throw new Error("Something went wrong!")
             }
             if(prettyData.data.login.token){
-                    console.log(prettyData.data.createUser)
-                              userContext.login(
-                                prettyData.data.login.token, 
-                                prettyData.data.login.userId
-                                  )
+                             userContext.login({
+                                token: prettyData.data.login.token,
+                                id: prettyData.data.login.token,
+                                ex: prettyData.data.login.tokenExpiration
+                             })
                                 setLoading(false)
-                                console.log("user token after login: " + prettyData.data.login.token)
+
                           }
             
         }
@@ -98,7 +97,7 @@ const  Signup = (props)=>{
     return (
         
         <div className="authentication-page" style={{width:30 + "%", margin: "auto", marginTop:150 + "px"}} >
-            <Form className={loading && "loading" } onSubmit={submitHandler}>
+            <Form className={loading ? "loading" : "" } onSubmit={submitHandler}>
                 {!emailValid}
                 <Form.Input
                     onChange={onChange}

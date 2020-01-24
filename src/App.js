@@ -7,60 +7,35 @@ import BookingPage from "./pages/Booking"
 import MainNavigation from "./components/Navigation/MainNavigation"
 import  'semantic-ui-css/semantic.min.css';
 import Login from "./pages/Login"
-import UserContext from './context/auth-context'
 import Home from "./pages/Home"
 import CreateEvent from "./pages/Event/CreateEvent"
+import {AuthProvider} from "./context/auth-context"
+import {AuthContext} from './context/auth-context'
+import {AuthRoute} from "./AuthRoute"
+import {NonAuthRoute} from "./AuthRoute"
 
 
 
 function App(props) {
-  const userContext = useContext(UserContext)
-  const [userCredentials, setUserCredentials] = useState({
-    token:null,
-    userId:null
-  })
-  const login = (token,userId,tokenExpirition)=>{
-    setUserCredentials({
-      ...userCredentials,
-      token: token,
-      userId: userId
-    })
-  }
-
-  const logout = ()=>{
-    setUserCredentials({
-      ...userCredentials,
-      token: null,
-      userId: null
-    })
-  }
+const user = useContext(AuthContext)
+console.log("app.js user: " + user.user)
   return (
     <BrowserRouter >
       <React.Fragment>
-      <UserContext.Provider value={{
-            token: userCredentials.token,
-            userId:userCredentials.token,
-            login: login,
-            logout: logout
-      }}>
+      <AuthProvider>
         <MainNavigation/>
-        <main className="main-content">
+        <main className="main-content" >
         <Switch>
-          
-          {userCredentials.token && (<Redirect from="/login" to="/events" exact/>)}
-          {!userCredentials.token && (<Redirect from="/create-event" to="/events" exact/>)}
-          {userCredentials.token && (<Redirect from="/signup" to="/events" exact/>)}
-          {!userCredentials.token && (<Redirect from="/bookings" to="/login" exact/>)}
-          {!userCredentials.token && (<Redirect from="/logout" to="/login" exact/>)}
+          <NonAuthRoute path="/create-event" component={CreateEvent} exact/>
+          <NonAuthRoute path="/bookings" component={BookingPage} exact/>
+          <AuthRoute path="/login" component={Login} exact/>
+          <AuthRoute path="/signup" component={AuthPage} exact/>
           <Route path="/" component={Home} exact/>
           <Route path="/events" component={EventPage} />
-          {!userCredentials.token && (<Route path="/signup" component={AuthPage} />)}
-          {userCredentials.token && (<Route path="/create-event" component={CreateEvent} />)}
-          {userCredentials.token &&(<Route path="/bookings" component={BookingPage} />)}
-          {!userCredentials.token &&(<Route path="/login" component={Login} />)}
+         
         </Switch>
         </main>
-      </UserContext.Provider>
+      </AuthProvider>
       </React.Fragment>
     </BrowserRouter>
     
