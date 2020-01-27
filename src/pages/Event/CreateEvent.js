@@ -1,12 +1,10 @@
 import React, {useContext, useState, useRef} from "react"
-import {AuthContext} from "../../context/auth-context"
 import SingleEvent from "../../components/Event/SingleEvent"
 
 function CreateEvent(props){
     const [loading, setLoading] = useState(false)
     const [errors, setErrors] = useState([])
     const [event,setEvent] = useState()
-    let {user} = useContext(AuthContext)
     let title = useRef()
     let date = useRef()
     let description = useRef()
@@ -58,7 +56,6 @@ function CreateEvent(props){
             })
             const prettyData = await data.json()
             if(data.status !==200 && data.status !==201){
-                setLoading(false)    
                 const errorArray = prettyData.errors.map(error=>{
                     return {error: error.message}
                 })
@@ -81,7 +78,7 @@ function CreateEvent(props){
             <SingleEvent key={event._id} event={event}/>
         </div>
     ) : (
-        <div style={{width:40+"%",margin:"auto",marginTop:100}}>
+        <div className="create-event-container" >
             <h1>Create Event</h1>
             <form  className={loading? "ui form loading" : "ui form"  }onSubmit={onSubmit}>
                 <div className="field">

@@ -1,3 +1,19 @@
+.create-event-container{
+    width:40%;
+    margin:auto;
+    margin-top:100px;
+}
+.authentication-page{
+        width:30%;
+        margin: auto;
+        margin-top:150px;
+}
+.event-card{
+    display: inline-block;
+    margin: 10px;
+    background-color: #1b1c1d;
+    padding: 10px;
+  }
 .createEvent {
     background: #21ba45;
     color: white;
@@ -7,9 +23,11 @@
     padding: 7px;
     font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
     box-sizing: border-box;
+
 }
 .create-button-container{
     margin-bottom:30px;
+    margin-top: 5.5rem;
 }
 
 .createEvent:hover {
@@ -22,3 +40,77 @@
     padding: 7px;
     font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
 }
+.book, .book:active, .book:visited, .book:focus{
+    margin: auto;
+    display: table;
+    padding-right: 20px;
+    padding-left: 20px;
+    background-color: white;
+}
+.make-booking {
+    padding-top:10px;
+}
+.single-booking{
+    display: inline-block;
+}
+.events-container{
+    margin-top: 3.5rem;
+}
+.booking-container{
+    display: table;
+    margin: auto;
+    padding-top: 5%;
+}
+@media only screen and (max-width: 600px) {
+    .home-page{
+        padding-top: 20%!important;
+    }
+    .main-navigation__logo{
+        display:none;
+    }
+    .main-navigation__items {
+        margin-left:0px!important;
+    }
+
+    .booking-container{
+        padding-top: 15%;
+    }
+    .createEvent{
+        float: right;
+        position: fixed;
+        right: 10px;
+    }
+    .event-card{
+        margin: auto;
+        display: table;
+        width: 100%;
+    }
+    .create-button-container{
+        margin-bottom:0px;
+        margin-top:0px
+    }
+    .events-container{
+        display: block;
+    }
+    .booking-container{
+        padding-top: 3.5rem;
+        width: 100%;
+    }
+    .single-booking{
+        display: block;
+    }
+    .authentication-page{
+        width: 50%;
+        margin: auto;
+        display: block;
+        margin-top: 33%;
+    
+    }
+    .create-event-container{
+        width: 50%;
+         margin: auto;
+         margin-top: 23%;
+         display: block;
+    }
+  }
+ 

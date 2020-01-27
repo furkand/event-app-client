@@ -74,6 +74,13 @@ const  Signup = (props)=>{
                                   )
                                 setLoading(false)
                                 console.log("user token after login: " + prettyData.data.createUser.token)
+                          }else{
+                            const errorArray = prettyData.errors.map(error=>{
+                                return {error: error.message}
+                            })
+                            setLoading(false)
+                            setErrors([...errorArray])
+                                throw new Error("This email is already taken!")               
                           }
             
         }
@@ -97,7 +104,7 @@ const  Signup = (props)=>{
     
     return (
         
-        <div className="authentication-page" style={{width:30 + "%", margin: "auto", marginTop:150 + "px"}}>
+        <div className="authentication-page" > 
             <Form className={loading && "loading" }onSubmit={submitHandler}>
                 {!emailValid}
                 <Form.Input

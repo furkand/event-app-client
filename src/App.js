@@ -18,7 +18,6 @@ import {NonAuthRoute} from "./AuthRoute"
 
 function App(props) {
 const user = useContext(AuthContext)
-console.log("app.js user: " + user.user)
   return (
     <BrowserRouter >
       <React.Fragment>
@@ -26,7 +25,7 @@ console.log("app.js user: " + user.user)
         <MainNavigation/>
         <main className="main-content" >
         <Switch>
-          <NonAuthRoute path="/create-event" component={CreateEvent} exact/>
+          <NonAuthRoute path="/events/create-event" component={CreateEvent} exact/>
           <NonAuthRoute path="/bookings" component={BookingPage} exact/>
           <AuthRoute path="/login" component={Login} exact/>
           <AuthRoute path="/signup" component={AuthPage} exact/>

@@ -5,6 +5,7 @@ import {AuthContext} from "../../context/auth-context"
 import  "./event.css"
 
 
+
 function EventsPage(props){
 const [events,setEvents]= useState([])
 const {user} = useContext(AuthContext);
@@ -35,7 +36,6 @@ const fetchData = async ()=>{
                 }
             })
         const prettyData = await data.json()
-        console.log(events)
         setEvents(prettyData.data.events)
     }catch(err){
         console.log(err)
@@ -44,17 +44,16 @@ const fetchData = async ()=>{
   useEffect(()=>{
     fetchData()
   },[])
-    
     return (
         <React.Fragment>
             
-            <div style={{width:70+"%",margin:"auto",marginTop:150}}>
+            <div className="events-container">
               {user && (<div className="create-button-container">
-                        <Link className="createEvent" to="/create-event">Create Event</Link>
+                        <Link className="createEvent" to="events/create-event">Create Event</Link>
                             </div>)}
                 {events.map(event=>
                     (
-                        <SingleEvent key={event._id} event={event}/>
+                        <SingleEvent  key={event._id} event={event} />
                     )
                 )}
             </div>
