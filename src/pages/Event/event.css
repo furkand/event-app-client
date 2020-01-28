@@ -176,7 +176,7 @@
         scroll-behavior: smooth;
     }
     .home-page-button{
-        bottom: 150px;
+        bottom: 100px!important;
     }
   }
  
