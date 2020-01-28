@@ -1,8 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-![text](https://i.picsum.photos/id/948/200/300.jpg)
+![alt text](https://raw.githubusercontent.com/username/event-app-client/master/public/to/home-page.gif)
 
-![text](https://i.picsum.photos/id/948/200/300.jpg)
 ## Available Scripts
 
 In the project directory, you can run:
