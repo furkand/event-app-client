@@ -3,7 +3,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 <img src="https://raw.githubusercontent.com/fdmrtrk/event-app-client/master/public/home-page.gif" align="left" >
 <img src="https://raw.githubusercontent.com/fdmrtrk/event-app-client/master/public/app-3.png" width="300" height="500" align="left">
 <img src="https://raw.githubusercontent.com/fdmrtrk/event-app-client/master/public/app-2.png" width="300" height="500" align="left">
-<img src="https://raw.githubusercontent.com/fdmrtrk/event-app-client/master/public/app.png" width="300" height="500" align="left">
+<img src="https://raw.githubusercontent.com/fdmrtrk/event-app-client/master/public/app.png" width="300" height="500" >
 
 ## Available Scripts
 
