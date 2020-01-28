@@ -4,6 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ![](https://raw.githubusercontent.com/fdmrtrk/event-app-client/master/public/app.png){:height="500px" width="300px"}
 ![](https://raw.githubusercontent.com/fdmrtrk/event-app-client/master/public/app-2.png){:height="500px" width="300px"}
 ![](https://raw.githubusercontent.com/fdmrtrk/event-app-client/master/public/app-3.png){:height="500px" width="300px"}
+<img src="https://raw.githubusercontent.com/fdmrtrk/event-app-client/master/public/app-3.png" width="100" height="100">
 
 ## Available Scripts
 
