@@ -154,6 +154,7 @@
         width: 100%;
         margin:0px;
         border-bottom: 1px solid #fbbd08;
+        
     }
     .authentication-page{
         width: 50%;
@@ -167,6 +168,9 @@
          margin: auto;
          margin-top: 23%;
          display: block;
+    }
+    .main-navigation{
+        padding: 0px!important;
     }
   }
  
