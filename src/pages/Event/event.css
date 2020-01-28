@@ -172,5 +172,8 @@
     .main-navigation{
         padding: 0px!important;
     }
+    .main-content{
+        scroll-behavior: smooth;
+    }
   }
  
