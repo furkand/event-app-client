@@ -1,9 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ![](https://raw.githubusercontent.com/fdmrtrk/event-app-client/master/public/home-page.gif)
-![](https://raw.githubusercontent.com/fdmrtrk/event-app-client/master/public/app.png){:height="700px" width="400px"}
-![](https://raw.githubusercontent.com/fdmrtrk/event-app-client/master/public/app-2.png){:height="700px" width="400px"}
-![](https://raw.githubusercontent.com/fdmrtrk/event-app-client/master/public/app-3.png){:height="700px" width="400px"}
+![](https://raw.githubusercontent.com/fdmrtrk/event-app-client/master/public/app.png){:height="500px" width="300px"}
+![](https://raw.githubusercontent.com/fdmrtrk/event-app-client/master/public/app-2.png){:height="500px" width="300px"}
+![](https://raw.githubusercontent.com/fdmrtrk/event-app-client/master/public/app-3.png){:height="500px" width="300px"}
 
 ## Available Scripts
 
