@@ -1,11 +1,6 @@
 import React , {useReducer, createContext} from 'react'
 import jwtDecode from 'jwt-decode'
 
-const checkBookings = localStorage.getItem("bookings")
-if(!checkBookings){
-    localStorage.setItem("bookings", JSON.stringify([]))
-}
-
 const initialState = {
     user: null
 }

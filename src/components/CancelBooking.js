@@ -1,30 +1,22 @@
 import React ,{useState,useContext,useEffect}from "react"
 import {AuthContext} from "../context/auth-context"
 
-const BookingButton = ({id,booked}) => {
+const CancelBooking = ({id}) => {
     const [booking, setBooking] = useState(false)
     const [loading, setLoading] = useState(false)
     const [errors, setErrors] = useState([])
     const {user} = useContext(AuthContext)
-    useEffect(()=>{
-        setBooking(booked)
-    },[])
+    
 
-    const makeBooking = async (event) =>{
+    const cancelBooking = async (event) =>{
         event.preventDefault()
         const requestBody = {
             query:`
                 mutation{
-                    bookEvent(
-                        eventId: "${id}"
+                    cancelBooking(
+                        bookingId: "${id}"
                     ){
                         _id
-                        user{
-                            _id
-                        }
-                        event{
-                            _id
-                        }
                     }
                 }
             `
@@ -49,9 +41,6 @@ const BookingButton = ({id,booked}) => {
                      throw new Error("Something went wrong")
             }
             if(prettyData.data){
-                const raw = localStorage.getItem("bookings")
-                const bookings = [...JSON.parse(raw), prettyData.data.bookEvent.event._id]
-                localStorage.setItem("bookings", JSON.stringify(bookings))
                 setBooking(true)
                 setLoading(false)
                
@@ -64,8 +53,8 @@ const BookingButton = ({id,booked}) => {
 
     return(
     <div className="make-booking">
-        {user ? ( <button disabled={booking} onClick={makeBooking} className="book"> {booking ? "Booked" : "Book"}</button>) : <div></div>}
+        <button disabled={booking} onClick={cancelBooking} className="book">{booking ? "Cancelled" : "Cancel Booking"} </button>
     </div>
     )
 }
-export default BookingButton
+export default CancelBooking

@@ -1,13 +1,11 @@
 import React from "react"
 import moment from "moment"
-import BookingButton from "../BookingButton"
+import CancelBooking from "./CancelBooking"
 
-function SingleEvent({event:{title,date,description,price,_id},booked}){
-    const condition = booked.filter(item=>{
-        return item.event._id === _id
-    })
+function SingleBooking({event:{title,date,description,price,_id} , id}){
+
     return (
-                    <div className="event-card ">
+                    <React.Fragment >
                     <div className="event-content">
                      <div className="content">
                      <div className="center aligned header"><h3 className="ui header yellow">{title}</h3></div>
@@ -26,10 +24,10 @@ function SingleEvent({event:{title,date,description,price,_id},booked}){
                      </div>
                      </div>
                      </div>
-                    {condition.length > 0 ? (<BookingButton booked={true} id={_id}/>) : (<BookingButton  booked={false}id={_id}/>)}
-                     </div>
+                        <CancelBooking id={id} />
+                     </React.Fragment>
                     
     )
 }
 
-export default SingleEvent;
+export default SingleBooking;

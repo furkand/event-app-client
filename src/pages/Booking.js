@@ -1,5 +1,5 @@
 import React, {useContext, useState,useEffect} from "react"
-import SingleEvent from "../components/Event/SingleEvent"
+import SingleBooking from "../components/SingleBooking"
 
 function BookingPage(props){
     const [bookings, setBookings] = useState([])
@@ -58,13 +58,21 @@ function BookingPage(props){
         fetchData()
     },[])
     return (
-        <div className="booking-container">
-            {bookings.map((item)=>(
-                <div className="single-booking">
-                    <SingleEvent key={item._id} event={item.event}/>
-                </div>
-            ))}
+        <React.Fragment>
+        {loading ? (<div class="ui segment loading-container">
+        <div class="ui active dimmer -loading-content">
+            <div class="ui text loader">Loading</div>
         </div>
+        <p></p>
+        </div> 
+        ): (<div className="booking-container">
+        {bookings.map((item)=>(
+            <div key={item._id} className="single-booking">
+                <SingleBooking key={item._id} id={item._id} event={item.event}/>
+            </div>
+        ))}
+    </div>)}
+    </React.Fragment>
     )
 }
 

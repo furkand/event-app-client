@@ -1,3 +1,30 @@
+.event-content{
+    color:white;
+}
+.book, .book:active, .book:hover, .book:focus, .book:visited{
+    display: table;
+    padding-right: 20px;
+    padding-left: 20px;
+    border: 1px solid #21ba45;
+    background: #21ba45;
+    color: white;
+    font-size:15px;
+    outline:none;
+    margin:auto;
+}
+.book:disabled{
+    opacity: 0.5;
+}
+.loading-container {
+    height: 100%;
+    border: none!important;
+}
+.loading-content{
+    margin-top: 3.5rem;
+    border: none;
+    padding: 0px;
+    width: 100%;
+}
 .create-event-container{
     width:40%;
     margin:auto;
@@ -8,11 +35,13 @@
         margin: auto;
         margin-top:150px;
 }
-.event-card{
-    display: inline-block;
+.event-card,.single-booking{
+    display: block;
     margin: 10px;
     background-color: #1b1c1d;
     padding: 10px;
+    float: left;
+    width: 30%;
   }
 .createEvent {
     background: #21ba45;
@@ -40,28 +69,44 @@
     padding: 7px;
     font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
 }
-.book, .book:active, .book:visited, .book:focus{
-    margin: auto;
-    display: table;
-    padding-right: 20px;
-    padding-left: 20px;
-    background-color: white;
-}
 .make-booking {
     padding-top:10px;
 }
-.single-booking{
-    display: inline-block;
-}
+
 .events-container{
     margin-top: 3.5rem;
+    display: table;
+    margin: auto;
+    width: 60%;
+
 }
 .booking-container{
     display: table;
     margin: auto;
     padding-top: 5%;
+    width: 60%;
+}
+.single-booking{
+    min-height: 150px;
+}
+.event-content{
+    min-height: 100px;
 }
 @media only screen and (max-width: 600px) {
+    .book, .book:active,.book:hover,.book:focus,.book:visited{
+        border: 1px solid #21ba45;
+        background: #21ba45;
+        color: white;
+        font-size:15px;
+        outline:none
+    
+    }
+    .book:disabled{
+        opacity: 0.5;
+    }
+    .event-content{
+        color:white;
+    }
     .home-page{
         padding-top: 20%!important;
     }
@@ -79,11 +124,13 @@
         float: right;
         position: fixed;
         right: 10px;
+        bottom:20px;
+        border-radius:12px;
     }
     .event-card{
         margin: auto;
         display: table;
-        width: 100%;
+        width: 100%!important;
     }
     .create-button-container{
         margin-bottom:0px;
@@ -91,6 +138,8 @@
     }
     .events-container{
         display: block;
+        width: 100%;
+        margin-top: 3.5rem;
     }
     .booking-container{
         padding-top: 3.5rem;
@@ -98,6 +147,8 @@
     }
     .single-booking{
         display: block;
+        width: 100%;
+        margin:0px
     }
     .authentication-page{
         width: 50%;
