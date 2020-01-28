@@ -74,10 +74,10 @@
 }
 
 .events-container{
-    margin-top: 3.5rem;
     display: table;
     margin: auto;
     width: 60%;
+    margin-top: 3.5rem;
 
 }
 .booking-container{
@@ -93,6 +93,9 @@
     min-height: 100px;
 }
 @media only screen and (max-width: 600px) {
+    .main-navigation {
+        padding: 0px;
+    }
     .book, .book:active,.book:hover,.book:focus,.book:visited{
         border: 1px solid #21ba45;
         background: #21ba45;
@@ -131,6 +134,7 @@
         margin: auto;
         display: table;
         width: 100%!important;
+        border-bottom: 1px solid #fbbd08;
     }
     .create-button-container{
         margin-bottom:0px;
@@ -148,7 +152,8 @@
     .single-booking{
         display: block;
         width: 100%;
-        margin:0px
+        margin:0px;
+        border-bottom: 1px solid #fbbd08;
     }
     .authentication-page{
         width: 50%;
