@@ -1,7 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-![](https://raw.githubusercontent.com/fdmrtrk/event-app-client/master/public/home-page.gif)
-<img src="https://raw.githubusercontent.com/fdmrtrk/event-app-client/master/public/home-page.gif" width="300" height="500">
+<img src="https://raw.githubusercontent.com/fdmrtrk/event-app-client/master/public/home-page.gif" >
 <img src="https://raw.githubusercontent.com/fdmrtrk/event-app-client/master/public/app-3.png" width="300" height="500">
 <img src="https://raw.githubusercontent.com/fdmrtrk/event-app-client/master/public/app-2.png" width="300" height="500">
 <img src="https://raw.githubusercontent.com/fdmrtrk/event-app-client/master/public/app.png" width="300" height="500">
