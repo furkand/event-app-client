@@ -59,9 +59,9 @@ function BookingPage(props){
     },[])
     return (
         <React.Fragment>
-        {loading ? (<div class="ui segment loading-container">
-        <div class="ui active dimmer -loading-content">
-            <div class="ui text loader">Loading</div>
+        {loading ? (<div className="ui segment loading-container">
+        <div className="ui active dimmer -loading-content">
+            <div className="ui text loader">Loading</div>
         </div>
         <p></p>
         </div> 

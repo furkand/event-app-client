@@ -49,9 +49,6 @@ const BookingButton = ({id,booked}) => {
                      throw new Error("Something went wrong")
             }
             if(prettyData.data){
-                const raw = localStorage.getItem("bookings")
-                const bookings = [...JSON.parse(raw), prettyData.data.bookEvent.event._id]
-                localStorage.setItem("bookings", JSON.stringify(bookings))
                 setBooking(true)
                 setLoading(false)
                
